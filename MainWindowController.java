@@ -53,6 +53,8 @@ public class MainWindowController {
 
     @FXML
     void onSymbolClick(MouseEvent event) {
+        num = Math.max(onClear, num2);
+        System.out.println(num);
         String symbol = ((Pane)event.getSource()).getId().replace("btn","");
         if(symbol.equals("SqRoot")) {
             double sroot = Math.sqrt(Double.parseDouble(dis.getText()));
@@ -70,8 +72,9 @@ public class MainWindowController {
             dis.setText(String.valueOf(dis.getText().concat(".")));
             System.out.println(doti);
         } else if(symbol.equals("Clear")) {
-            num1 = Double.parseDouble(dis.getText());
-            onClear = Math.max(num1, 0);
+            num = Math.max(onClear, num1);
+            System.out.println(num + onClear + num1);
+            onClear = Double.parseDouble(dis.getText());
             dis.setText(String.valueOf(0));
             operator = "";
         } else if(symbol.equals("AllClear")) {
@@ -82,9 +85,10 @@ public class MainWindowController {
             num2 = 0;
         } else if(symbol.equals("Equals")) {
             num2 = Double.parseDouble(dis.getText());
-            System.out.println(num2);
+            System.out.println(num);
             switch (operator) {
-                case "+" -> dis.setText((num1 + num2) + ""); //Instead of String.valueOf()
+                case "+" -> dis.setText((num1 + num2) + "");
+                //Instead of String.valueOf()
                 case "-" -> dis.setText((num1 - num2) + "");
                 case "*" -> dis.setText((num1 * num2) + "");
                 case "/" -> dis.setText((num1 / num2) + "");
