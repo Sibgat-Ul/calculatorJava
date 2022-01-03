@@ -177,7 +177,7 @@
                               </Label>
                           </children>
                       </Pane>
-                  <Pane fx:id="btnDot" onMouseClicked="#onSymbolClick" prefHeight="100.0" prefWidth="100.0" styleClass="highlight" GridPane.rowIndex="3">
+                  <Pane fx:id="btnDot" onMouseClicked="#onNumberClick" prefHeight="100.0" prefWidth="100.0" styleClass="highlight" GridPane.rowIndex="3">
                      <children>
                         <Label layoutX="61.0" layoutY="28.0" text="." textFill="WHITE">
                            <font>

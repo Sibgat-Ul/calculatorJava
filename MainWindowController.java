@@ -12,7 +12,7 @@ public class MainWindowController {
     @FXML private ImageView btnMinimize, btnClose;
     @FXML private Label dis, preDis;
 
-    private double x, y;
+    private double x, y, doti;
     private double num, num1, num2, onClear;
     private String operator = "";
 
@@ -37,13 +37,14 @@ public class MainWindowController {
     @FXML
     void onNumberClick(MouseEvent event) {
         String val = dis.getText();
-        System.out.println(val.length());
         String nums = ((Pane)event
                 .getSource())
                 .getId()
                 .replace("btn","");
 
-        dis.setText(dis.getText()+nums);
+        String d = nums.equals("Dot") ? "." : nums;
+
+        dis.setText(dis.getText()+d);
     }
 
     @FXML
