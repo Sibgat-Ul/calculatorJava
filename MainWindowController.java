@@ -12,7 +12,7 @@ public class MainWindowController {
     @FXML private ImageView btnMinimize, btnClose;
     @FXML private Label dis, preDis;
 
-    private double x, y, num, num1, num2, onClear, ans;
+    private double x, y, num1, num2, ans;
     private String operator = "";
 
     private double factorial(double x) {
@@ -51,7 +51,7 @@ public class MainWindowController {
                 .getId()
                 .replace("btn","");
 
-        String d = nums.equals("Dot") ? "." : nums;
+        String d = nums.equals("Dot") ? "." : nums.equals("PI") ? String.valueOf(Math.PI) : nums;
         String valFin = dis.getText()+d;
 
         if(val.length() == 1 && val.charAt(0) == '0') {
@@ -108,9 +108,65 @@ public class MainWindowController {
                 num1 = z;
                 dis.setText(String.valueOf(z));
             }
-            case "Clear" -> {
-                num1 = 0;
+            case "Sin"-> {
+                num1 = Math.sin(Double.parseDouble(dis.getText()));
                 dis.setText(String.valueOf(num1));
+            }
+            case "Cos"-> {
+                num1 = Math.cos(Double.parseDouble(dis.getText()));
+                dis.setText(String.valueOf(num1));
+            }
+            case "Tan"-> {
+                num1 = Math.tan(Double.parseDouble(dis.getText()));
+                dis.setText(String.valueOf(num1));
+            }
+            case "ArcSin"-> {
+                num1 = Math.asin(Math.toRadians(Double.parseDouble(dis.getText())));
+                dis.setText(String.valueOf(num1));
+            }
+            case "ArcCos"-> {
+                num1 = Math.acos(Math.toRadians(Double.parseDouble(dis.getText())));
+                dis.setText(String.valueOf(num1));
+            }
+            case "ArcTan"-> {
+                num1 = Math.atan(Math.toRadians(Double.parseDouble(dis.getText())));
+                dis.setText(String.valueOf(num1));
+            }
+            case "Abs"-> {
+                num1 = Math.abs(Double.parseDouble(dis.getText()));
+                dis.setText(String.valueOf(num1));
+            }
+            case "Cosh"-> {
+                num1 = Math.cosh(Double.parseDouble(dis.getText()));
+                dis.setText(String.valueOf(num1));
+            }
+            case "Sinh"-> {
+                num1 = Math.sinh(Double.parseDouble(dis.getText()));
+                dis.setText(String.valueOf(num1));
+            }
+            case "Tanh"-> {
+                num1 = Math.tanh(Double.parseDouble(dis.getText()));
+                dis.setText(String.valueOf(num1));
+            }
+            case "rand"-> {
+                num1 = Math.random();
+                dis.setText(String.valueOf(num1));
+            }
+            case "Bin"-> {
+                num1 = Double.parseDouble(Long.toBinaryString(Long.parseLong(dis.getText())));
+                dis.setText(String.valueOf(num1));
+            }
+            case "Hex"-> {
+                num1 = Double.parseDouble(Long.toHexString(Long.parseLong(dis.getText())));
+                dis.setText(String.valueOf(num1));
+            }
+            case "Oct"-> {
+                num1 = Double.parseDouble(Long.toOctalString(Long.parseLong(dis.getText())));
+                dis.setText(String.valueOf(num1));
+            }
+            case "Clear" -> {
+                String newNum = String.valueOf(num1).substring(0, dis.getText().length()-1);
+                dis.setText(newNum);
                 operator = "";
             }
             case "AllClear" -> {
