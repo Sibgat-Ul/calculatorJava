@@ -51,6 +51,11 @@ public class MainWindowController {
     }
 
     @FXML
+    void toInt() {
+        String val = dis.getText();
+    }
+
+    @FXML
     void onNumberClick(MouseEvent event) {
         String val = dis.getText();
         String nums = ((Pane)event
@@ -99,7 +104,7 @@ public class MainWindowController {
             }
             case "1byX" -> {
                 double byX = Double.parseDouble(dis.getText());
-                 num1 = 1/byX;
+                 num1 = 1.0/byX;
                  dis.setText(String.valueOf(num1));
             }
             case "PI" -> {
@@ -122,7 +127,15 @@ public class MainWindowController {
                 num1 = Math.log(a);
                 dis.setText(String.valueOf(num1));
             }
-            case "Exp" -> {
+            case "E" -> {
+                double a = Double
+                        .parseDouble(dis
+                                .getText());
+                double expNum = Math.exp(1);
+                num1 = expNum;
+                dis.setText(String.valueOf(num1));
+            }
+            case "Ex" -> {
                 double a = Double
                         .parseDouble(dis
                                 .getText());
@@ -148,15 +161,18 @@ public class MainWindowController {
                 dis.setText(String.valueOf(num1));
             }
             case "ArcSin"-> {
-                num1 = Math.asin(Math.toRadians(Double.parseDouble(dis.getText())));
+                double x = Double.parseDouble(dis.getText());
+                num1 = Math.asin(x);
                 dis.setText(String.valueOf(num1));
             }
             case "ArcCos"-> {
-                num1 = Math.acos(Math.toRadians(Double.parseDouble(dis.getText())));
+                double x = Double.parseDouble(dis.getText());
+                num1 = Math.acos(x);
                 dis.setText(String.valueOf(num1));
             }
             case "ArcTan"-> {
-                num1 = Math.atan(Math.toRadians(Double.parseDouble(dis.getText())));
+                double x = Double.parseDouble(dis.getText());
+                num1 = Math.atan(x);
                 dis.setText(String.valueOf(num1));
             }
             case "Abs"-> {
@@ -175,20 +191,34 @@ public class MainWindowController {
                 num1 = Math.tanh(Double.parseDouble(dis.getText()));
                 dis.setText(String.valueOf(num1));
             }
-            case "rand"-> {
-                num1 = Math.random();
-                dis.setText(String.valueOf(num1));
+            case "Rand"-> {
+                dis.setText(String.valueOf(Math.random()*100 + 1));
             }
             case "Bin"-> {
-                num1 = Double.parseDouble(Long.toBinaryString(Long.parseLong(dis.getText())));
+                double x = Double.parseDouble(dis.getText());
+                int x1 = (int)x;
+                num1 = Double.parseDouble(Long.toBinaryString(Long.parseLong(String.valueOf(x1))));
                 dis.setText(String.valueOf(num1));
             }
             case "Hex"-> {
-                num1 = Double.parseDouble(Long.toHexString(Long.parseLong(dis.getText())));
-                dis.setText(String.valueOf(num1));
+                double x = Double.parseDouble(dis.getText());
+                int x1 = (int)x;
+                dis.setText(Long.toHexString(Long.parseLong(String.valueOf(x1))));
             }
             case "Oct"-> {
-                num1 = Double.parseDouble(Long.toOctalString(Long.parseLong(dis.getText())));
+                double x = Double.parseDouble(dis.getText());
+                int x1 = (int)x;
+                num1 = Double.parseDouble(Long.toOctalString(Long.parseLong(String.valueOf(x1))));
+                dis.setText(String.valueOf(num1));
+            }
+            case "Rad"-> {
+                double x = Double.parseDouble(dis.getText());
+                num1 = Math.toRadians(x);
+                dis.setText(String.valueOf(num1));
+            }
+            case "Deg"-> {
+                double x = Double.parseDouble(dis.getText());
+                num1 = Math.toDegrees(x);
                 dis.setText(String.valueOf(num1));
             }
             case "AllClear" -> {
@@ -226,6 +256,32 @@ public class MainWindowController {
                         ans = num1 % num2;
                         dis.setText(ans + "");
                     }
+                    case "^" -> {
+                        ans = Math.pow(num1, num2);
+                        dis.setText(String.valueOf(ans));
+                    }
+                    case "P" -> {
+                        ans = factorial(num1) / factorial((num1-num2));;
+                        dis.setText(String.valueOf(ans));
+                    }
+                    case "C" -> {
+                        double n = factorial(num2);
+                        double n2 = factorial((num1-num2));
+                        ans = factorial(num1)/(n*n2);
+                        dis.setText(String.valueOf(ans));
+                    }
+                    case "E" -> {
+                        ans = num1 * Math.pow(10,num2);
+                        dis.setText(String.valueOf(ans));
+                    }
+                    case "," -> {
+                        ans = Math.hypot(num1, num2);
+                        dis.setText(String.valueOf(ans));
+                    }
+                    case "Root" -> {
+                        ans = Math.round(Math.pow(num1, 1.0 / num2));
+                        dis.setText(String.valueOf(ans));
+                    }
                 }
                 operator = "";
                 preDis.setText(String.valueOf(0));
@@ -239,8 +295,14 @@ public class MainWindowController {
                     case "Multiply" -> operator = "*";
                     case "Divide" -> operator = "/";
                     case "Remainder" -> operator = "%";
+                    case "Pwr" -> operator = "^";
+                    case "nPr" -> operator = "P";
+                    case "nCr" -> operator = "C";
+                    case "Exp" -> operator = "E";
+                    case "Hyp" -> operator = ",";
+                    case "NthRoot" -> operator = "Root";
                 }
-                preDis.setText(String.valueOf(num1));
+                preDis.setText((num1) + operator);
             }
         }
     }
