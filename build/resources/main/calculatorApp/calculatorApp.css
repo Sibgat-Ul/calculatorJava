@@ -1,0 +1,24 @@
+.root {
+    -fx-background-color: #393E46;
+    -fx-background-radius: 10;
+}
+
+.equalsBtn, .button, .aCbtn, .mainDis {
+    -fx-background-radius: 10;
+}
+
+.button, .mainDis {
+    -fx-background-color: #222831;
+}
+
+.button:hover {
+    -fx-background-color: #FFD369;
+}
+
+.aCbtn {
+    -fx-background-color: #D65A31;
+}
+
+.equalsBtn {
+    -fx-background-color: #EEEEEE;
+}
